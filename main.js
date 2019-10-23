@@ -27,6 +27,28 @@ generateEl.addEventListener('click', () => {
     resultEl.innerText = generatePassword(hasLower, hasUpper, hasNumber, hasSymbol, length)
 });
 
+//Step 6: Copy password to clipboard
+clipboardEl.addEventListener('click', () => {
+    //create textarea Element
+    const textareaEl = document.createElement('textarea')
+    //get result from innerText
+    const password = resultEl.innerText;
+    if (!password) {
+        return
+    }
+    //add value of password to textarea
+    textareaEl.value = password
+    //puts in the body
+    document.body.appendChild(textareaEl)
+    textareaEl.select()
+    //copy to clipboard
+    document.execCommand('copy')
+    //remove text
+    textareaEl.remove();
+    alert('Password copied to clipboard')
+
+})
+
 //Step 5: GeneratePassword function
 function generatePassword(lower, upper, number, symbol, length) {
     //1. Init a password variable
